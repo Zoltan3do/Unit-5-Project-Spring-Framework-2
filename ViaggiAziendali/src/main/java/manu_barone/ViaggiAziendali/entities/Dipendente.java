@@ -26,9 +26,11 @@ public class Dipendente {
     @JoinColumn(name="id_prenotazione")
     private List<Prenotazione> prenotazioni;
 
-    public Dipendente(String nome, String cognome, String email) {
+    public Dipendente(String username, String nome, String cognome, String email) {
+        this.username = username;
         this.nome = nome;
         this.cognome = cognome;
         this.email = email;
     }
+
 }

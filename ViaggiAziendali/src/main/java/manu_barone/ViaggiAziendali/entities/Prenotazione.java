@@ -24,21 +24,21 @@ public class Prenotazione {
 
     @OneToOne
     @JoinColumn(name="id_dipendente")
-    private Dipendente dipendenten;
+    private Dipendente dipendente;
 
     private LocalDate dataRichiesta;
     private String note = "";
 
-    public Prenotazione(Viaggio viaggio, Dipendente dipendenten, LocalDate dataRichiesta, String note) {
+    public Prenotazione(Viaggio viaggio, Dipendente dipendente, LocalDate dataRichiesta, String note) {
         this.viaggio = viaggio;
-        this.dipendenten = dipendenten;
+        this.dipendente = dipendente;
         this.dataRichiesta = dataRichiesta;
         this.note = note;
     }
 
-    public Prenotazione(Viaggio viaggio, Dipendente dipendenten, LocalDate dataRichiesta) {
+    public Prenotazione(Viaggio viaggio, Dipendente dipendente, LocalDate dataRichiesta) {
         this.viaggio = viaggio;
-        this.dipendenten = dipendenten;
+        this.dipendente = dipendente;
         this.dataRichiesta = dataRichiesta;
     }
 }

@@ -26,14 +26,10 @@ public class Viaggio {
     @Enumerated(EnumType.STRING)
     private StatoViaggio statoViaggio;
 
-    @OneToOne
-    @JoinColumn(name="id_prenotazione")
-    private Prenotazione prenotazione;
-
-    public Viaggio(String destinazione, LocalDate data, StatoViaggio statoViaggio, Prenotazione p) {
+    public Viaggio(String destinazione, LocalDate data) {
         this.destinazione = destinazione;
         this.data = data;
-        this.statoViaggio = statoViaggio;
-        this.prenotazione = p;
+        this.statoViaggio = StatoViaggio.IN_PROGRAMMA;
     }
+
 }

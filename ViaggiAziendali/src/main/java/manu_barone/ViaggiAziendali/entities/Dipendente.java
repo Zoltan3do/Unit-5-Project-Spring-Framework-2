@@ -22,9 +22,6 @@ public class Dipendente {
     private String cognome;
     private String email;
 
-    @OneToMany
-    @JoinColumn(name="id_prenotazione")
-    private List<Prenotazione> prenotazioni;
 
     public Dipendente(String username, String nome, String cognome, String email) {
         this.username = username;
@@ -32,5 +29,7 @@ public class Dipendente {
         this.cognome = cognome;
         this.email = email;
     }
+
+
 
 }

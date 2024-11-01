@@ -22,6 +22,5 @@ public record ViaggioDTO(
         @NotNull
         @Pattern(regexp = "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$")
         UUID id_prenotazione
-
 ) {
 }

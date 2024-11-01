@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -18,11 +19,11 @@ public class Prenotazione {
     @Setter(AccessLevel.NONE)
     private UUID id;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name="id_viaggio")
     private Viaggio viaggio;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name="id_dipendente")
     private Dipendente dipendente;
 

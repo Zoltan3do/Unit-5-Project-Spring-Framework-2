@@ -13,7 +13,8 @@ public record DipendenteDTO(
         @Size(min = 2, max = 40, message = "Il cognome deve essere compreso tra 2 e 40 caratteri!")
         String cognome,
         @NotEmpty(message = "Lo username è obbligatorio!")
-        @Email(message = "L'email inserita non è un'email obbligatorio")
+        @Email(message = "L'email inserita non è un'email valida!")
+        @Pattern(regexp = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\\\.[a-zA-Z]{2,}$\n")
         @Size(min = 4, message = "La password deve avere almeno 4 caratteri!")
         String email
 ) {

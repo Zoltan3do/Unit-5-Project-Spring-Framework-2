@@ -7,13 +7,13 @@ import java.util.UUID;
 
 public record PrenotazioneDTO(
 
-        @Pattern(regexp = "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$")
+        @NotNull
         UUID id_viaggio,
 
         @NotEmpty
         String id_dipendente,
 
-        @Future
+        @NotNull
         LocalDate dataRichiesta
 ) {
 }

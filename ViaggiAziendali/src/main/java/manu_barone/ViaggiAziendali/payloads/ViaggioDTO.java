@@ -1,5 +1,6 @@
 package manu_barone.ViaggiAziendali.payloads;
 
+import jakarta.validation.constraints.Future;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
@@ -13,14 +14,11 @@ public record ViaggioDTO(
         String destinazione,
 
         @NotNull
-        LocalDate data,
+        @Future
+        LocalDate data
 
-        @NotEmpty
-        @Pattern(regexp = "^(IN_PROGRAMMA|COMPLETATO)$")
-        StatoViaggio sv,
-
-        @NotNull
-        @Pattern(regexp = "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$")
-        UUID id_prenotazione
+//        @NotEmpty
+//        @Pattern(regexp = "^(IN_PROGRAMMA|COMPLETATO)$")
+//        StatoViaggio sv
 ) {
 }

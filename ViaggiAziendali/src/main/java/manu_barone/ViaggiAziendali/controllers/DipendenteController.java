@@ -1,6 +1,7 @@
 package manu_barone.ViaggiAziendali.controllers;
 
 import manu_barone.ViaggiAziendali.entities.Dipendente;
+import manu_barone.ViaggiAziendali.entities.Viaggio;
 import manu_barone.ViaggiAziendali.exceptions.BadRequestException;
 import manu_barone.ViaggiAziendali.payloads.DipendenteDTO;
 import manu_barone.ViaggiAziendali.services.DipendenteSer;
@@ -11,6 +12,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @RestController

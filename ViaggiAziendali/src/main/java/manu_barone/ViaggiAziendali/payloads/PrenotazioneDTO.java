@@ -14,6 +14,10 @@ public record PrenotazioneDTO(
         String id_dipendente,
 
         @NotNull
-        LocalDate dataRichiesta
+        LocalDate dataRichiesta,
+
+        @Size(min = 5, message = "Questo messaggio è troppo piccolo!")
+        String nota
+
 ) {
 }

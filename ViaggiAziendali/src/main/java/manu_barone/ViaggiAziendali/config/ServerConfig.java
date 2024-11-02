@@ -12,17 +12,17 @@ import java.util.Map;
 @Configuration
 public class ServerConfig {
 
-    @Bean
-    public Cloudinary getImageUploader(
-            @Value("${cloudinary.name}") String cloudName,
-            @Value("${cloudinary.key}") String apiKey,
-            @Value("${cloudinary.secrey}")String apiSecret
-    ){
-        Map<String,String> config = new HashMap<>();
-        config.put("cloud_name",cloudName);
-        config.put("api_key",apiKey);
-        config.put("api_secret",apiSecret);
-        return new Cloudinary(config);
-    }
+//    @Bean
+//    public Cloudinary getImageUploader(
+//            @Value("${cloudinary.name}") String cloudName,
+//            @Value("${cloudinary.key}") String apiKey,
+//            @Value("${cloudinary.secrey}") String apiSecret
+//    ) {
+//        Map<String, String> config = new HashMap<>();
+//        config.put("cloud_name", cloudName);
+//        config.put("api_key", apiKey);
+//        config.put("api_secret", apiSecret);
+//        return new Cloudinary(config);
+//    }
 
 }

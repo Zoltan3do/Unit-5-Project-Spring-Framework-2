@@ -4,6 +4,7 @@ import manu_barone.ViaggiAziendali.entities.Dipendente;
 import manu_barone.ViaggiAziendali.entities.Prenotazione;
 import manu_barone.ViaggiAziendali.exceptions.BadRequestException;
 import manu_barone.ViaggiAziendali.payloads.DipendenteDTO;
+import manu_barone.ViaggiAziendali.payloads.NotaDTO;
 import manu_barone.ViaggiAziendali.payloads.PrenotazioneDTO;
 import manu_barone.ViaggiAziendali.services.PrenotazioneSer;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @RestController
@@ -37,5 +39,14 @@ public class PrenotazioneController {
             throw new BadRequestException("Ci sono stati errori nel payload! " + message);
         }
         return this.prenotazioneSer.save(body);
+    }
+
+    @PatchMapping("{prenotazioneId}/aggiungiNota")
+    public Prenotazione aggiungiNota(@PathVariable UUID prenotazioneId, @RequestBody @Validated NotaDTO body, BindingResult validationResult) {
+        if (validationResult.hasErrors()) {
+            validationResult.getAllErrors().forEach(System.out::println);
+            throw new BadRequestException("Ci sono stati errori nel body");
+        }
+        return this.prenotazioneSer.aggiungiNota(prenotazioneId, body);
     }
 }

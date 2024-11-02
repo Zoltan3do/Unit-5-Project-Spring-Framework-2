@@ -2,6 +2,7 @@ package manu_barone.ViaggiAziendali.services;
 
 import manu_barone.ViaggiAziendali.entities.Dipendente;
 import manu_barone.ViaggiAziendali.entities.Viaggio;
+import manu_barone.ViaggiAziendali.entities.enums.StatoViaggio;
 import manu_barone.ViaggiAziendali.payloads.ViaggioDTO;
 import manu_barone.ViaggiAziendali.repositories.ViaggioRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -43,5 +45,11 @@ public class ViaggioSer {
 
     public List<Viaggio> findByData(LocalDate ld) {
         return this.vr.findByData(ld);
+    }
+
+    public Viaggio changeState(UUID viaggioId) {
+        Viaggio fund = this.findById(viaggioId);
+        fund.setStatoViaggio(fund.getStatoViaggio() == StatoViaggio.COMPLETATO ? StatoViaggio.IN_PROGRAMMA : StatoViaggio.COMPLETATO);
+        return this.vr.save(fund);
     }
 }

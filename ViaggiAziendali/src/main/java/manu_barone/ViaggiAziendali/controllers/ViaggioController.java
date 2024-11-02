@@ -47,4 +47,11 @@ public class ViaggioController {
         this.viaggioSer.findByIdAndDelete(viaggioId);
     }
 
+
+    @PutMapping("/{viaggioId}/changeState")
+    public Viaggio changeState(@PathVariable("viaggioId") UUID viaggioId) {
+        return this.viaggioSer.changeState(viaggioId);
+    }
+
+
 }

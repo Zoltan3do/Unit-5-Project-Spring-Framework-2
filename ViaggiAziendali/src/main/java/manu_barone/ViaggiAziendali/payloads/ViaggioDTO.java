@@ -15,10 +15,9 @@ public record ViaggioDTO(
 
         @NotNull
         @Future
-        LocalDate data
+        LocalDate data,
 
-//        @NotEmpty
-//        @Pattern(regexp = "^(IN_PROGRAMMA|COMPLETATO)$")
-//        StatoViaggio sv
+        @Pattern(regexp = "^(IN_PROGRAMMA|COMPLETATO)$")
+        StatoViaggio sv
 ) {
 }

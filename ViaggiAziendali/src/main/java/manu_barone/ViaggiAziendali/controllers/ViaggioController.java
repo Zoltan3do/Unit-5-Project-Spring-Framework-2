@@ -31,6 +31,11 @@ public class ViaggioController {
         return this.viaggioSer.findAll(page, size, sortBy);
     }
 
+    @GetMapping("/{viaggioId}")
+    public Viaggio findById(@PathVariable UUID viaggioId){
+        return this.viaggioSer.findById(viaggioId);
+    }
+
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public Viaggio save(@RequestBody @Validated ViaggioDTO body, BindingResult validationResult) {

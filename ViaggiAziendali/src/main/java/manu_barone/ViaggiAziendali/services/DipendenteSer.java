@@ -1,5 +1,7 @@
 package manu_barone.ViaggiAziendali.services;
 
+import com.cloudinary.Cloudinary;
+import com.cloudinary.utils.ObjectUtils;
 import manu_barone.ViaggiAziendali.entities.Dipendente;
 import manu_barone.ViaggiAziendali.entities.Prenotazione;
 import manu_barone.ViaggiAziendali.payloads.DipendenteDTO;
@@ -10,7 +12,11 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
+import java.util.Objects;
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -19,8 +25,11 @@ public class DipendenteSer {
     @Autowired
     private DipendenteRepo dipendenteRepo;
 
-    public Dipendente save(DipendenteDTO body){
-        Dipendente d = new Dipendente(body.username(),body.nome(),body.cognome(),body.email());
+    @Autowired
+    private Cloudinary c;
+
+    public Dipendente save(DipendenteDTO body) {
+        Dipendente d = new Dipendente(body.username(), body.nome(), body.cognome(), body.email());
         return this.dipendenteRepo.save(d);
     }
 
@@ -30,8 +39,8 @@ public class DipendenteSer {
         return this.dipendenteRepo.findAll(pageable);
     }
 
-    public Dipendente findById(String dipendenteUser){
-        return this.dipendenteRepo.findById(dipendenteUser).orElseThrow(()-> new RuntimeException());
+    public Dipendente findById(String dipendenteUser) {
+        return this.dipendenteRepo.findById(dipendenteUser).orElseThrow(() -> new RuntimeException());
     }
 
     public void findByIdAndDelete(String id) {
@@ -39,6 +48,18 @@ public class DipendenteSer {
         this.dipendenteRepo.delete(p);
     }
 
+    public String aggiungiAvatar(String idDipendente, MultipartFile file) {
+        String url = null;
+        try {
+            url = (String) c.uploader().upload(file.getBytes(), ObjectUtils.emptyMap()).get("url");
+            Dipendente fund = dipendenteRepo.findById(idDipendente).orElseThrow(()-> new RuntimeException("Dipendente non trovato"));
+            fund.setAvatar(url);
+            dipendenteRepo.save(fund);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        return url;
+    }
 
 
 }

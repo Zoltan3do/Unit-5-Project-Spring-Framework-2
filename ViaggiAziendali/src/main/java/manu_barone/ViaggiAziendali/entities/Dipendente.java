@@ -21,6 +21,7 @@ public class Dipendente {
     private String nome;
     private String cognome;
     private String email;
+    private String avatar;
 
 
     public Dipendente(String username, String nome, String cognome, String email) {
@@ -28,6 +29,7 @@ public class Dipendente {
         this.nome = nome;
         this.cognome = cognome;
         this.email = email;
+        this.avatar = "https://img.freepik.com/premium-vector/man-empty-avatar-casual-business-style-vector-photo-placeholder-social-networks-resumes_885953-434.jpg";
     }
 
 }

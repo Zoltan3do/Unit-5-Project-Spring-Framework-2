@@ -2,6 +2,7 @@ package manu_barone.ViaggiAziendali.controllers;
 
 import manu_barone.ViaggiAziendali.entities.Dipendente;
 import manu_barone.ViaggiAziendali.entities.Prenotazione;
+import manu_barone.ViaggiAziendali.entities.Viaggio;
 import manu_barone.ViaggiAziendali.exceptions.BadRequestException;
 import manu_barone.ViaggiAziendali.payloads.DipendenteDTO;
 import manu_barone.ViaggiAziendali.payloads.NotaDTO;
@@ -29,6 +30,11 @@ public class PrenotazioneController {
                                       @RequestParam(defaultValue = "10") int size,
                                       @RequestParam(defaultValue = "id") String sortBy) {
         return this.prenotazioneSer.findAll(page, size, sortBy);
+    }
+
+    @GetMapping("/{prenotazioneId}")
+    public Prenotazione findById(@PathVariable UUID prenotazioneId){
+        return this.prenotazioneSer.findById(prenotazioneId);
     }
 
     @PostMapping

@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -29,6 +30,12 @@ public class DipendenteController {
         return this.dipendenteSer.findAll(page, size, sortBy);
     }
 
+    @GetMapping("/{dipendenteId}")
+    public Dipendente findById(@PathVariable String dipendenteId){
+        return this.dipendenteSer.findById(dipendenteId);
+    }
+
+
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public Dipendente save(@RequestBody @Validated DipendenteDTO body, BindingResult validationResult) {
@@ -38,5 +45,13 @@ public class DipendenteController {
         }
         return this.dipendenteSer.save(body);
     }
+
+
+    @PatchMapping("/{dipendenteId}/avatar")
+    public String addAvatar(@PathVariable("dipendenteId") String dipendenteId, @RequestParam("avatar")MultipartFile file){
+        return this.dipendenteSer.aggiungiAvatar(dipendenteId, file);
+    }
+
+
 
 }

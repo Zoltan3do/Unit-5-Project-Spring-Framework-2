@@ -1,10 +1,7 @@
 package manu_barone.ViaggiAziendali.controllers;
 
-import lombok.extern.slf4j.Slf4j;
-import manu_barone.ViaggiAziendali.entities.Dipendente;
 import manu_barone.ViaggiAziendali.entities.Viaggio;
 import manu_barone.ViaggiAziendali.exceptions.BadRequestException;
-import manu_barone.ViaggiAziendali.payloads.DipendenteDTO;
 import manu_barone.ViaggiAziendali.payloads.ViaggioDTO;
 import manu_barone.ViaggiAziendali.services.ViaggioSer;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,7 +29,7 @@ public class ViaggioController {
     }
 
     @GetMapping("/{viaggioId}")
-    public Viaggio findById(@PathVariable UUID viaggioId){
+    public Viaggio findById(@PathVariable UUID viaggioId) {
         return this.viaggioSer.findById(viaggioId);
     }
 
@@ -52,8 +49,7 @@ public class ViaggioController {
         this.viaggioSer.findByIdAndDelete(viaggioId);
     }
 
-
-    @PutMapping("/{viaggioId}/changeState")
+    @PatchMapping("/{viaggioId}/changeState")
     public Viaggio changeState(@PathVariable("viaggioId") UUID viaggioId) {
         return this.viaggioSer.changeState(viaggioId);
     }

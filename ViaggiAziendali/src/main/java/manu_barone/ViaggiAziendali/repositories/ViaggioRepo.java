@@ -12,4 +12,5 @@ import java.util.UUID;
 @Repository
 public interface ViaggioRepo extends JpaRepository<Viaggio, UUID> {
     List<Viaggio> findByData(LocalDate ld);
+    List<Viaggio> findByDataAndDestinazione(LocalDate data, String destinazione);
 }

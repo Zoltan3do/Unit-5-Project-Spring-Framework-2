@@ -79,5 +79,4 @@ public class PrenotazioneSer {
         return this.prenotazioneRepo.save(fund);
     }
 
-
 }

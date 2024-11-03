@@ -3,6 +3,7 @@ package manu_barone.ViaggiAziendali.services;
 import manu_barone.ViaggiAziendali.entities.Dipendente;
 import manu_barone.ViaggiAziendali.entities.Viaggio;
 import manu_barone.ViaggiAziendali.entities.enums.StatoViaggio;
+import manu_barone.ViaggiAziendali.exceptions.BadRequestException;
 import manu_barone.ViaggiAziendali.payloads.ViaggioDTO;
 import manu_barone.ViaggiAziendali.repositories.ViaggioRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,9 +25,12 @@ public class ViaggioSer {
     private ViaggioRepo vr;
 
     public Viaggio save(ViaggioDTO body) {
+        if (!vr.findByDataAndDestinazione(body.data(), body.destinazione()).isEmpty())
+            throw new BadRequestException("Esiste già un viaggio omonimo!!!");
         Viaggio v = new Viaggio(body.destinazione(), body.data());
         return this.vr.save(v);
     }
+
 
     public Page<Viaggio> findAll(int page, int size, String sortBy) {
         if (size > 100) size = 100;

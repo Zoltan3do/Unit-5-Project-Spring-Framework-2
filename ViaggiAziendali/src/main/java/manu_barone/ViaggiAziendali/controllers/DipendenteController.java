@@ -48,7 +48,7 @@ public class DipendenteController {
 
 
     @PatchMapping("/{dipendenteId}/avatar")
-    public String addAvatar(@PathVariable("dipendenteId") String dipendenteId, @RequestParam("avatar")MultipartFile file){
+    public String addAvatar(@PathVariable("dipendenteId") String dipendenteId, @RequestParam("avatar") MultipartFile file){
         return this.dipendenteSer.aggiungiAvatar(dipendenteId, file);
     }
 
